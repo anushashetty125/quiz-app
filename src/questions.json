@@ -8,7 +8,8 @@
         { "option": "Every 10 days", "isCorrect": false },
         { "option": "Every 11 days", "isCorrect": false },
         { "option": "Every 9 days", "isCorrect": false }
-      ]
+      ],
+      "solutions": "Every 15 days"
     },
     {
       "id": 2,
@@ -19,12 +20,14 @@
         { "option": "boolean", "isCorrect": true },
         { "option": "object", "isCorrect": false },
         { "option": "array", "isCorrect": false }
-      ]
+      ],
+      "solutions": ["string","boolean"]
     },
     {
       "id": 3,
       "question": "List down all the lifecycle methods in React",
       "questionType": "textInput",
-      "answerOptions": [{ "option": "componentDidMount", "isCorrect": true }]
+      "answerOptions": [{ "option": "componentDidMount", "isCorrect": true }],
+      "solutions":"componentDidMount"
     }
   ]

@@ -1,9 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../App";
 import { actions } from "../actions";
-import { Typography, Card, TextField } from "@mui/material";
+import { Typography, Card, TextField, Box } from "@mui/material";
+import { useTheme } from "@mui/material";
 import RadioOptions from "./RadioOptions";
 import CheckboxOptions from "./CheckboxOptions";
+import "./QuestionCard.css";
+
 
 type QuestionCardProps = {
   id: number;
@@ -11,6 +14,7 @@ type QuestionCardProps = {
   questionType: QuestionType;
   answers: Array<any>;
 };
+
 
 export type QuestionType = "checkbox" | "radio" | "textInput";
 
@@ -23,20 +27,28 @@ function QuestionCard({
   const { setAnswer } = actions;
   const [appData, dispatchAppData] = useContext(AppContext);
 
-  console.log("App data is", appData);
+  const [answered, setAnswered] = useState<any>([]);
+
+  const theme = useTheme();
 
   return (
     <Card
       sx={{
-        padding: "2rem",
-        width: "500px",
+        padding: "4rem",
+        width: "800px",
         marginTop: "2rem",
-        overflowY: "auto",
+        height: "1000px",
+        overflowY: "auto"
       }}
     >
-      <Typography variant="h5" marginBottom="2rem">
+      <Typography variant="h5" marginBottom="1rem">
+        <Box
+          className="boxcolor"
+        > 
         {question}
+        </Box> 
       </Typography>
+      <br></br>
       {(() => {
         switch (questionType) {
           case "checkbox":
@@ -71,7 +83,7 @@ function QuestionCard({
                 options={answers.map((answer) => answer.option)}
                 value={appData.answers[id]?.value || ""}
                 handleChange={(e) =>
-                  dispatchAppData(setAnswer(id, e.target.value, questionType))
+                  dispatchAppData(setAnswer(id, e.target.value, questionType)) 
                 }
               />
             );
@@ -80,7 +92,7 @@ function QuestionCard({
               <TextField
                 value={appData.answers[id]?.value || ""}
                 onChange={(e) =>
-                  dispatchAppData(setAnswer(id, e.target.value, questionType))
+                  dispatchAppData(setAnswer(id, e.target.value, questionType)) 
                 }
               />
             );

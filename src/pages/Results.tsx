@@ -3,10 +3,10 @@ import { AppContext } from "../App";
 import questionsFile from "../questions.json"
 import { useLocation, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
-import PieChart from "recharts";
 import appReducer from "../context/AppReducer";
 import Questions from "./Questions";
 import questions from "../questions.json";
+import PieChart from "../components/PieChart";
 
 const totalQuestions = questionsFile.length;
 
@@ -66,6 +66,11 @@ const Results = () => {
               }}
             >
               {JSON.stringify(userAnswer[question.id - 1])}
+
+              <PieChart
+          value1={Number(NoOfCorrectAnswers)}
+          value2={totalQuestions - NoOfCorrectAnswers}
+        />
 
             </Box>}
             
